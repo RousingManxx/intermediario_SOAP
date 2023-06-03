@@ -27,7 +27,7 @@ public class IntermediarioConfiguration{
     @Bean
     public RegistroCliente RegistrosCliente(Jaxb2Marshaller mar){
         RegistroCliente cCliente = new RegistroCliente();
-        cCliente.setDefaultUri("https://soapregistro-production.up.railway.app/ws");
+        cCliente.setDefaultUri("http://localhost:8080/ws");
         cCliente.setMarshaller(mar);
         cCliente.setUnmarshaller(mar);
         return cCliente;

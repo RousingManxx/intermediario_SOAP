@@ -18,7 +18,7 @@ public class RegistroCliente extends WebServiceGatewaySupport{
 
     /*Método para recibir una respuesta del servidor SOAP Solicitar todos los registros*/
     public MostrarRegistrosResponse leerTodos(){
-        JAXBElement<MostrarRegistrosRequest> requestElement = new JAXBElement<>(new QName("https://t4is.uv.mx/registro", "MostrarRegistrosRequest"), MostrarRegistrosRequest.class,null);
+        JAXBElement<MostrarRegistrosRequest> requestElement = new JAXBElement<>(new QName("https://registro.uv.mx/registro", "MostrarRegistrosRequest"), MostrarRegistrosRequest.class,null);
         return (MostrarRegistrosResponse) getWebServiceTemplate().marshalSendAndReceive(API_URL, requestElement);
     }
 
