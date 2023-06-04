@@ -51,9 +51,9 @@ public class IntermediarioApplication {
 				data.add(a);
 			}
 			respuesta.put("data", data);
-			// return respuesta.toString();
+			return respuesta.toString();
 		} catch (Exception e) {
-			// respuesta.put("status", "Failed");
+			respuesta.put("status", "Failed");
 		}
 		return respuesta.toString();
 	}
@@ -78,7 +78,7 @@ public class IntermediarioApplication {
 			}
 			respuesta.put("data", data);
 		} catch (Exception e) {
-			// respuesta.put("status", "Failed");
+			respuesta.put("status", "Failed");
 		}
 		return respuesta.toString();
 	}
@@ -90,28 +90,30 @@ public class IntermediarioApplication {
 		JSONObject respuesta = new JSONObject();
 		try {
 			registroCliente.agregar(registro);
-			// respuesta.put("status", "Success");
+			respuesta.put("status", "Success");
 		} catch (Exception e) {
-			// respuesta.put("status", "Failed");
+			respuesta.put("status", "Failed");
 		}
 		return respuesta.toString();
 	}
 
 	/*Recurso que elimina los datos de un registro
 	*/
-	// @RequestMapping(value = "/registros/{id}", method = RequestMethod.DELETE)
-	// public String deleteRegistro(@PathVariable Integer id) {
-	// 	JSONObject respuesta = new JSONObject();
-	// 	try {
-	// 		MostrarRegistrosResponse sr = registroCliente.leerTodos();
-	// 		if (sr.getRegistro().equals( != null)) {
-	// 			camionesCliente.eliminar(id);
-
-	// 		}
-	// 		respuesta.put("status", "Success");
-	// 	} catch (Exception e) {
-	// 		respuesta.put("status", "Failed");
-	// 	}
-	// 	return respuesta.toString();
-	// }
+	@RequestMapping(value = "/registros/{id}", method = RequestMethod.DELETE)
+	public String deleteRegistro(@PathVariable Integer id) {
+		JSONObject respuesta = new JSONObject();
+		try {
+			MostrarRegistrosResponse sr = registroCliente.leerTodos();
+			for(MostrarRegistrosResponse.Registro lista : sr.getRegistro()) {
+				if(lista.getId() == id) {
+					registroCliente.eliminar(id);
+				}
+			}
+			
+			respuesta.put("status", "Success");
+		} catch (Exception e) {
+			respuesta.put("status", "Failed");
+		}
+		return respuesta.toString();
+	}
 }

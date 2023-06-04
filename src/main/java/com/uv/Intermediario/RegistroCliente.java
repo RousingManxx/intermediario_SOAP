@@ -41,7 +41,7 @@ public class RegistroCliente extends WebServiceGatewaySupport{
         return (AddRegistroResponse) getWebServiceTemplate().marshalSendAndReceive(API_URL, agregarRequest);
     }
     
-    // Eliminar un aula por id
+    // Eliminar un registro por id
     public EliminarRegistroResponse eliminar(Integer id){
         EliminarRegistroRequest eliminarRequest = new EliminarRegistroRequest();
         eliminarRequest.setId(id);
